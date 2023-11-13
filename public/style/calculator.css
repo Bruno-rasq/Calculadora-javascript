@@ -1,0 +1,99 @@
+.calculator{
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    width: 350px;
+    height: 560px;
+    border-radius: 10px;
+
+    background-color: var(--color1);
+    /* box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.6); */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.calculator .result{
+
+    width: 100%;
+    height: 25%;
+    padding: 20px;
+
+    color: var(--color4);
+
+    display: flex;
+    align-items: end;
+    justify-content: right;
+}
+
+.calculator .result > span {
+
+    font-size: 3.3em;
+}
+
+.calculator .buttons{
+
+    width: 100%;
+    height: 75%;
+
+    background-color: var(--color3);
+    display: flex;
+}
+
+.buttons .numbers {
+
+    height: 100%;
+    width: 263px;
+
+    background-color: var(--color4);
+
+    display: grid;
+    grid-template-areas: 
+        "a b c"
+        "d e f"
+        "g h i"
+        "j k l"
+        "m n o";
+
+
+}
+
+
+/* butoes. */
+.buttons .btn{
+
+    width: 87.5px;
+    height: 84px;
+
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.btn:hover{
+    background-color: var(--color2);
+}
+
+.operators > .btn{
+    background-color: var(--color2);
+}
+
+.operators > .btn:hover{
+    background-color: #e7cfb9;
+}
+
+.numbers > .btn:nth-child(13){
+    grid-area: n;
+}
+
+.numbers > .btn:nth-child(1),
+.numbers > .btn:nth-child(2),
+.numbers > .btn:nth-child(3){
+    background-color: var(--color3);
+}
+
+.numbers > .btn:nth-child(1):hover,
+.numbers > .btn:nth-child(2):hover,
+.numbers > .btn:nth-child(3):hover{
+    background-color: var(--color2);
+}

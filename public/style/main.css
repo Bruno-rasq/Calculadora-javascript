@@ -1,0 +1,30 @@
+@import '/public/style/calculator.css';
+
+:root{
+
+    --color1: #000000;
+    --color2: #F4DFCB;
+    --color3: #F4EAE0;
+    --color4: #FAF6F0;
+
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Roboto', sans-serif;
+
+    background-color: rgb(255, 69, 69);
+}
