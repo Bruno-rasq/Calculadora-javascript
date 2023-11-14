@@ -8,24 +8,23 @@ let division_btn = document.querySelector('.division');
 let Equal_btn = document.querySelector('.equal');
 
 let Percent_btn = document.querySelector('.percent');
-let negative_btn = document.querySelector('.negative');
-let reset_btn = document.querySelector('.reset');
-let resetALL_btn = document.querySelector('.resetALL');
+let opposite_btn = document.querySelector('.opposite');
+let backspace_btn = document.querySelector('.backspace');
+let clear_btn = document.querySelector('.clear');
 let floatpoint_btn = document.querySelector('.float-point');
 
 // 
 let Numbers = document.querySelectorAll('.number')
 
-let currentValue = ""
-let first = false
-
+let currentValue = "0"
+let first, second = false
 
 let value;
 Numbers.forEach((el) => {
     el.addEventListener('click', () => {
-        value = el.innerHTML;
+        value = el.value;
 
-        if(currentValue === "0"){
+        if (currentValue === "0") {
             currentValue = ''
         }
 
@@ -35,21 +34,22 @@ Numbers.forEach((el) => {
     })
 });
 
-resetALL_btn.addEventListener('click', () => {
+clear_btn.addEventListener('click', () => {
 
     result.innerHTML = "0"
     currentValue = ""
 })
 
-reset_btn.addEventListener('click', () => {
+backspace_btn.addEventListener('click', () => {
 
-    let newValue = reset(currentValue)
+    let newValue = backspace(currentValue)
     result.innerHTML = newValue
 
     currentValue = newValue
 })
 
-const reset = (current) => {
+
+const backspace = (current) => {
 
     if (current !== "0") {
 
@@ -65,3 +65,28 @@ const reset = (current) => {
         return "0"
     }
 };
+
+// opposite_btn.addEventListener('click', () => {
+
+//     let newValue = opposite(currentValue)
+//     result.innerHTML = newValue
+
+//     currentValue = newValue
+// })
+
+// const opposite = (current) => {
+
+//     if(current !== "0"){
+
+//         let stgToNumber = Number(current)
+
+//         if(stgToNumber > 0){
+//             return -stgToNumber
+//         } else {
+//             return Math.abs(stgToNumber)
+//         }
+
+//     } else {
+//         return "0"
+//     }
+// };

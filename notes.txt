@@ -1,0 +1,14 @@
+[CSS]
+- preciso concertar o display do resultado
+    fixar visualização sempre no ultimo elemento inserido
+
+[javascript]
+
+- decidir como vai ser estruturado as operações matemáticas
+    - multiplicação
+    - divisão
+    - adição
+    - subtração
+    - porcentagem
+    - troca de sinal
+    
