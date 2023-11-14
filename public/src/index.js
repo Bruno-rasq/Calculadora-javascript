@@ -17,13 +17,15 @@ Numbers.forEach((el) => {
     el.addEventListener('click', () => {
         value = el.value;
 
-        if (currentValue === "0") {
-            currentValue = ''
+        if(currentValue.length < 8){
+            if (currentValue === "0") {
+                currentValue = ''
+            }
+    
+            currentValue += value
+    
+            result.innerHTML = currentValue
         }
-
-        currentValue += value
-
-        result.innerHTML = currentValue
     })
 });
 
