@@ -1,20 +1,13 @@
 let result = document.querySelector('#result');
-
-// operators btn
-let multiply_btn = document.querySelector('.multiply');
-let subtraction_btn = document.querySelector('.subtraction');
-let addition_btn = document.querySelector('.addition');
-let division_btn = document.querySelector('.division');
-let Equal_btn = document.querySelector('.equal');
-
-let Percent_btn = document.querySelector('.percent');
-let opposite_btn = document.querySelector('.opposite');
 let backspace_btn = document.querySelector('.backspace');
 let clear_btn = document.querySelector('.clear');
-let floatpoint_btn = document.querySelector('.float-point');
 
-// 
-let Numbers = document.querySelectorAll('.number')
+
+let Numbers = document.querySelectorAll('.number');
+let keys = document.querySelectorAll('.keys_operators');
+
+
+//
 
 let currentValue = "0"
 let first, second = false
@@ -66,27 +59,12 @@ const backspace = (current) => {
     }
 };
 
-// opposite_btn.addEventListener('click', () => {
 
-//     let newValue = opposite(currentValue)
-//     result.innerHTML = newValue
 
-//     currentValue = newValue
-// })
+keys.forEach((el) => {
+    el.addEventListener('click', () => {
 
-// const opposite = (current) => {
+        console.log(el.value)
 
-//     if(current !== "0"){
-
-//         let stgToNumber = Number(current)
-
-//         if(stgToNumber > 0){
-//             return -stgToNumber
-//         } else {
-//             return Math.abs(stgToNumber)
-//         }
-
-//     } else {
-//         return "0"
-//     }
-// };
+    })
+})
