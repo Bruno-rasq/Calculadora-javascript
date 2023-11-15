@@ -1,14 +1,19 @@
 [CSS]
-- preciso concertar o display do resultado
-    fixar visualização sempre no ultimo elemento inserido
+- [x] preciso concertar o display do resultado
+    - [x] fixar visualização sempre no ultimo elemento inserido
+        OBS: como uma das restrições era aceitar apenas numeros
+        com 8 ou menos digitos, o problema do display se resolve.
 
 [javascript]
 
-- decidir como vai ser estruturado as operações matemáticas
-    - multiplicação
-    - divisão
-    - adição
-    - subtração
-    - porcentagem
-    - troca de sinal
+- [] Implementar operações matemáticas
+    - [x] multiplicação
+    - [x] divisão
+    - [x] adição
+    - [x] subtração
+    - [ ] porcentagem
+    - [ ] troca de sinal
+
+- [] concertar bug das multiplas operações
+- [] Implementar uso de numeros com casas decimais nas operações
     

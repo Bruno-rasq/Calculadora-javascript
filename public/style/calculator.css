@@ -35,6 +35,8 @@
     display: inline-block;
     white-space: nowrap;
     /* overflow: hidden; */
+
+    user-select: none;
 }
 
 .calculator .buttons {
@@ -72,6 +74,8 @@
     border: none;
     cursor: pointer;
     font-size: 1.5em;
+
+    user-select: none;
 }
 
 .btn:hover {

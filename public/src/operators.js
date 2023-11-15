@@ -1,16 +1,16 @@
- export const Addition = (n1, n2) => {
+export const Addition = (n1, n2) => {
     return n1 + n2
 };
 
- export const substration = (n1, n2) => {
+export const subtraction = (n1, n2) => {
     return n1 - n2
 };
 
- export const multiply = (n1, n2) => {
+export const multiplication = (n1, n2) => {
     return n1 * n2
 };
 
- export const division = (n1, n2) => {
+export const division = (n1, n2) => {
     return Math.round(n1 / n2)
 };
 

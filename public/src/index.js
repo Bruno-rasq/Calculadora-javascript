@@ -1,4 +1,4 @@
-import { Addition, multiply, division, substration, backspace } from "./operators.js";
+import { Addition, multiplication, division, subtraction, backspace } from "./operators.js";
 
 //
 const result = document.querySelector('#result');
@@ -35,18 +35,25 @@ Numbers.forEach((el) => {
 
             result.innerHTML = currentValue
         }
+
+        //Debug
+        console.log(currentValue, first, second, values)
     })
 });
+
 
 //limpando operações e valores
 clear_btn.addEventListener('click', () => {
 
     result.innerHTML = "0"
-    currentValue = ""
+    currentValue = "0"
 
     values.length = 0
     first = false
     second = false
+
+    //Debug
+    console.log(currentValue, first, second, values)
 })
 
 backspace_btn.addEventListener('click', () => {
@@ -55,8 +62,10 @@ backspace_btn.addEventListener('click', () => {
     result.innerHTML = newValue
 
     currentValue = newValue
-})
 
+    //Debug
+    console.log(currentValue, first, second, values)
+})
 
 
 // capturando operadores inseridos
@@ -66,53 +75,30 @@ keys.forEach((el) => {
         operator = el.value;
 
         if (!first) {
-            first = true
 
+            first = true
             values.push(currentValue)
             values.push(operator)
             currentValue = "0"
 
-        } else {
+        } else if (first) {
             second = true
+            if (values.length === 1) {
+                values.push(operator)
+                values.push(currentValue)
 
-            values.push(currentValue)
-            currentValue = "0"
-        }
+            } else {
+                values.push(currentValue)
 
-        if (first === true && second === true) {
-
-            let n1 = Number(values.shift())
-            let operator = values.shift()
-            let n2 = Number(values.shift())
-
-            let response;
-            switch (operator) {
-                case '+':
-                    response = Addition(n1, n2);
-                    break;
-
-                case '-':
-                    response = substration(n1, n2);
-                    break;
-
-                case '/':
-                    response = division(n1, n2);
-                    break;
-
-                case 'x':
-                    response = multiply(n1, n2);
-                    break;
-
-                default:
             }
 
             currentValue = "0"
-            result.innerHTML = response
-            values.length = 0
-            values.push(response)
-
-            second = false
+            responseOperator()
         }
+
+
+        //Debug
+        console.log(currentValue, first, second, values)
 
     })
 });
@@ -120,7 +106,23 @@ keys.forEach((el) => {
 // exibir resultado após pressionar botão de igual
 Equal_btn.addEventListener('click', () => {
 
-    values.push(currentValue)
+    if (values.length === 1) {
+        result.innerHTML = values[0]
+
+    } else if (values.length === 2) {
+        values.push(currentValue)
+        currentValue = "0"
+        responseOperator()
+
+    } else {
+        responseOperator()
+    }
+
+    //Debug
+    console.log(currentValue, first, second, values)
+});
+
+const responseOperator = () => {
 
     let n1 = Number(values.shift())
     let operator = values.shift()
@@ -133,7 +135,7 @@ Equal_btn.addEventListener('click', () => {
             break;
 
         case '-':
-            response = substration(n1, n2);
+            response = subtraction(n1, n2);
             break;
 
         case '/':
@@ -141,17 +143,16 @@ Equal_btn.addEventListener('click', () => {
             break;
 
         case 'x':
-            response = multiply(n1, n2);
+            response = multiplication(n1, n2);
             break;
 
         default:
     }
 
     currentValue = "0"
-    result.innerHTML = response
     values.length = 0
-    values.push(response)
-
+    values.push(`${response}`)
     second = false
 
-});
+    result.innerHTML = response
+};
