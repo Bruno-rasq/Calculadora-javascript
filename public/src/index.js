@@ -1,3 +1,5 @@
+import { Addition, multiply, division, substration, backspace } from "./operators.js";
+
 let result = document.querySelector('#result');
 let Equal_btn = document.querySelector('#equal-btn');
 
@@ -51,22 +53,7 @@ backspace_btn.addEventListener('click', () => {
 })
 
 
-const backspace = (current) => {
 
-    if (current !== "0") {
-
-        let split = current.split('')
-        split.pop();
-
-        let response = split.length === 0 ? "0" : split.join('');
-
-        return response;
-
-    } else {
-
-        return "0"
-    }
-};
 
 
 let values = []
@@ -86,15 +73,14 @@ keys.forEach((el) => {
             currentValue = "0"
 
         } else {
-
             second = true
 
             values.push(currentValue)
-            values.push(operator)
             currentValue = "0"
         }
 
         if (first === true && second === true) {
+
             let n1 = Number(values.shift())
             let operator = values.shift()
             let n2 = Number(values.shift())
@@ -122,8 +108,9 @@ keys.forEach((el) => {
 
             currentValue = "0"
             result.innerHTML = response
+            values.length = 0
+            values.push(response)
 
-            first = false
             second = false
         }
 
@@ -161,29 +148,9 @@ Equal_btn.addEventListener('click', () => {
 
     currentValue = "0"
     result.innerHTML = response
+    values.length = 0
+    values.push(response)
 
-    first = false
     second = false
 
-    console.log(values)
 });
-
-
-
-// Math operators
-
-const Addition = (n1, n2) => {
-    return n1 + n2
-};
-
-const substration = (n1, n2) => {
-    return n1 - n2
-};
-
-const multiply = (n1, n2) => {
-    return n1 * n2
-};
-
-const division = (n1, n2) => {
-    return Math.round(n1 / n2)
-};

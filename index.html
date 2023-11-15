@@ -6,7 +6,7 @@
     <title>Calculadora - javascript</title>
 
     <link rel="stylesheet" href="/public/style/main.css">
-    <script src="/public/src/index.js" defer></script>
+    <script type="module" src="/public/src/index.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
     
     <div class="calculator">
         <div class="result">
-            <span id="result" contenteditable="true">0</span>
+            <span id="result">0</span>
         </div>
 
         <div class="buttons">
@@ -27,7 +27,7 @@
             <div class="numbers">
                 <button class="btn clear">AC</button>
                 <button class="btn keys_operators" value="+/-">+/-</button>
-                <button class="btn keys_operators" value="%">%</button>
+                <button class="btn" value="%">%</button>
 
                 <button class="btn number" value="7">7</button>
                 <button class="btn number" value="8">8</button>
