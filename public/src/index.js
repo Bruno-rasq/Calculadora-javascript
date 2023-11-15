@@ -1,21 +1,26 @@
 import { Addition, multiply, division, substration, backspace } from "./operators.js";
 
-let result = document.querySelector('#result');
-let Equal_btn = document.querySelector('#equal-btn');
-
-let backspace_btn = document.querySelector('.backspace');
-let clear_btn = document.querySelector('.clear');
-
-let Numbers = document.querySelectorAll('.number');
-let keys = document.querySelectorAll('.keys_operators');
-
-
 //
+const result = document.querySelector('#result');
+const Equal_btn = document.querySelector('#equal-btn');
 
+const backspace_btn = document.querySelector('.backspace');
+const clear_btn = document.querySelector('.clear');
+
+const Numbers = document.querySelectorAll('.number');
+const keys = document.querySelectorAll('.keys_operators');
+
+
+// variaveis auxiliares
 let currentValue = "0"
-let first, second = false
-
+let first = false
+let second = false
 let value;
+let operator;
+let values = []
+
+
+// capturando valores inseridos
 Numbers.forEach((el) => {
     el.addEventListener('click', () => {
         value = el.value;
@@ -33,7 +38,7 @@ Numbers.forEach((el) => {
     })
 });
 
-
+//limpando operações e valores
 clear_btn.addEventListener('click', () => {
 
     result.innerHTML = "0"
@@ -54,12 +59,7 @@ backspace_btn.addEventListener('click', () => {
 
 
 
-
-
-let values = []
-
-// key operators
-let operator;
+// capturando operadores inseridos
 keys.forEach((el) => {
     el.addEventListener('click', () => {
 
@@ -117,6 +117,7 @@ keys.forEach((el) => {
     })
 });
 
+// exibir resultado após pressionar botão de igual
 Equal_btn.addEventListener('click', () => {
 
     values.push(currentValue)
