@@ -14,6 +14,10 @@ export const division = (n1, n2) => {
     return Math.round(n1 / n2)
 };
 
+export const percent = (n1, n2) => {
+    return Math.round((n2 * n1)/100)
+};
+
 export const backspace = (current) => {
 
     if (current !== "0") {

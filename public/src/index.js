@@ -1,4 +1,5 @@
-import { Addition, multiplication, division, subtraction, backspace } from "./operators.js";
+import { Addition, multiplication, division, 
+         subtraction, percent, backspace } from "./operators.js";
 
 //
 const result = document.querySelector('#result');
@@ -6,18 +7,19 @@ const Equal_btn = document.querySelector('#equal-btn');
 
 const backspace_btn = document.querySelector('.backspace');
 const clear_btn = document.querySelector('.clear');
+const opposite_btn = document.querySelector('#opposite');
 
 const Numbers = document.querySelectorAll('.number');
 const keys = document.querySelectorAll('.keys_operators');
 
 
 // variaveis auxiliares
-let currentValue = "0"
-let first = false
-let second = false
+let currentValue = "0";
+let first = false;
+let second = false;
 let value;
 let operator;
-let values = []
+let values = [];
 
 
 // capturando valores inseridos
@@ -39,7 +41,7 @@ Numbers.forEach((el) => {
         //Debug
         console.log(currentValue, first, second, values)
     })
-});
+})
 
 
 //limpando operações e valores
@@ -68,6 +70,14 @@ backspace_btn.addEventListener('click', () => {
 })
 
 
+opposite_btn.addEventListener('click', () => {
+
+    // inserir codigo de troca de sinal em currentCalue
+    console.log('clicou!')
+
+})
+
+
 // capturando operadores inseridos
 keys.forEach((el) => {
     el.addEventListener('click', () => {
@@ -82,7 +92,7 @@ keys.forEach((el) => {
             currentValue = "0"
 
         } else if (first) {
-            second = true
+
             if (values.length === 1) {
                 values.push(operator)
                 values.push(currentValue)
@@ -92,6 +102,7 @@ keys.forEach((el) => {
 
             }
 
+            second = true
             currentValue = "0"
             responseOperator()
         }
@@ -101,7 +112,7 @@ keys.forEach((el) => {
         console.log(currentValue, first, second, values)
 
     })
-});
+})
 
 // exibir resultado após pressionar botão de igual
 Equal_btn.addEventListener('click', () => {
@@ -120,7 +131,7 @@ Equal_btn.addEventListener('click', () => {
 
     //Debug
     console.log(currentValue, first, second, values)
-});
+})
 
 const responseOperator = () => {
 
@@ -146,13 +157,18 @@ const responseOperator = () => {
             response = multiplication(n1, n2);
             break;
 
+        case '%':
+            response = percent(n1, n2);
+            break;
+
         default:
     }
 
     currentValue = "0"
     values.length = 0
     values.push(`${response}`)
+    first = false
     second = false
 
     result.innerHTML = response
-};
+}
