@@ -1,0 +1,23 @@
+{
+  "name": "Calculadora-javascript",
+  "version": "1.0.0",
+  "description": "## License  ![License](https://img.shields.io/github/license/Bruno-rasq/Calculadora-javascript.svg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bruno-rasq/Calculadora-javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bruno-rasq/Calculadora-javascript/issues"
+  },
+  "homepage": "https://github.com/Bruno-rasq/Calculadora-javascript#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

@@ -1,5 +1,5 @@
 import { Addition, multiplication, division, 
-         subtraction, percent, backspace } from "./operators.js";
+    subtraction, percent, backspace } from "./operators.js";
 
 //
 const result = document.querySelector('#result');
@@ -15,14 +15,14 @@ const keys = document.querySelectorAll('.keys_operators');
 
 // variaveis auxiliares
 let currentValue = "0";
+let value;
 let first = false;
 let second = false;
-let value;
-let operator;
+let operator = null;
 let values = [];
 
 
-// capturando valores inseridos
+// Capturando valores
 Numbers.forEach((NumberKey) => {
     NumberKey.addEventListener('click', () => {
         value = NumberKey.value;
@@ -34,83 +34,71 @@ Numbers.forEach((NumberKey) => {
             }
 
             currentValue += value
-
             result.innerHTML = currentValue
+
         }
 
         //Debug
         console.log(currentValue, first, second, values)
     })
-})
+});
 
 
-
-
-// capturando operadores inseridos
+//Capturando operadores inseridos
 keys.forEach((OperatorKey) => {
     OperatorKey.addEventListener('click', () => {
-
         operator = OperatorKey.value;
 
         if (!first) {
-
-            first = true
             values.push(currentValue)
-            values.push(operator)
-            currentValue = "0"
+            first = true
 
         } else if (first) {
-
-            if (values.length === 1) {
-                values.push(operator)
-                values.push(currentValue)
-
-            } else {
-                values.push(currentValue)
-
-            }
-
             second = true
-            currentValue = "0"
-            responseOperator()
-        }
+            
+        } else if(first && second){
+            values.push(currentValue)
+            responseCalc(values, operator)
+            operator = null
 
+        }
+        currentValue = "0"
+
+        //Debug
+        console.log(currentValue, first, second, values, operator)
+
+    })
+});
+
+
+//botão de inicilização do calculo
+Equal_btn.addEventListener('click', () => {
+
+    if (values.length === 0) {
+        result.innerHTML = currentValue
+
+    } else if (values.length === 1){
+        values.push(currentValue)
 
         //Debug
         console.log(currentValue, first, second, values)
 
-    })
-})
-
-// exibir resultado após pressionar botão de igual
-Equal_btn.addEventListener('click', () => {
-
-    if (values.length === 0) {
-        result.innerHTML = currentValue.toString()
-
-    } else if (values.length === 2) {
-        values.push(currentValue)
-        
-        responseOperator()
-        currentValue = "0"
-
-    } else {
-        responseOperator()
+        responseCalc(values, operator)
+        operator = null
     }
-
-
-    //Debug
-    console.log(currentValue, first, second, values)
 });
 
-const responseOperator = () => {
 
-    let n1 = Number(values.shift())
-    let operator = values.shift()
-    let n2 = Number(values.shift())
+//calculando...
+const responseCalc = (arr, op) => {
+
+    let n1 = Number(arr.shift())
+    let n2 = Number(arr.shift())
+    
+    let operatorCalc = op
 
     let response;
-    switch (operator) {
+    switch (operatorCalc) {
         
         case '+':
             response = Addition(n1, n2);
@@ -135,16 +123,12 @@ const responseOperator = () => {
         default:
     }
 
-    currentValue = "0"
-    values.length = 0
     values.push(`${response}`)
-    first = false
-    second = false
-
     result.innerHTML = response
+
+    currentValue = "0"
+    second = false
 };
-
-
 
 
 
@@ -152,10 +136,11 @@ const responseOperator = () => {
 //limpando operações e valores
 clear_btn.addEventListener('click', () => {
 
-    result.innerHTML = "0"
     currentValue = "0"
+    result.innerHTML = currentValue
 
     values.length = 0
+    operator = null
     first = false
     second = false
 
