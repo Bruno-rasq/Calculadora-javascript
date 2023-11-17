@@ -40,7 +40,7 @@ Numbers.forEach((NumberKey) => {
         //Debug
         console.log(currentValue, values, operator, first, second)
     })
-});
+})
 
 
 //Capturando operadores inseridos
@@ -56,8 +56,8 @@ keys.forEach((OperatorKey) => {
             second = true
             
         } else if(first && second){
-            values.push(Number(currentValue))
             responseCalc(values, operator)
+            values.push(Number(currentValue))
 
         }
         currentValue = "0"
@@ -66,7 +66,7 @@ keys.forEach((OperatorKey) => {
         console.log(currentValue, values, operator, first, second)
 
     })
-});
+})
 
 
 //botão de inicilização do calculo
@@ -87,7 +87,7 @@ Equal_btn.addEventListener('click', () => {
         responseCalc(values, operator)
         
     }
-});
+})
 
 
 //calculando...
@@ -133,7 +133,7 @@ const responseCalc = (arr, op) => {
 
     //Debug
     console.log(currentValue, values, operator, first, second)
-};
+}
 
 
 
@@ -167,7 +167,19 @@ backspace_btn.addEventListener('click', () => {
 
 opposite_btn.addEventListener('click', () => {
 
-    // inserir codigo de troca de sinal em currentCalue
-    console.log('clicou!')
+    if(values.length === 0){
+        let aux = Number(currentValue)
+        let opposite = aux > 0 ? -aux : Math.abs(aux);
+    
+        currentValue = `${opposite}`
+        result.innerHTML = currentValue
+
+    } else {
+        let aux = Number(values[0])
+        let opposite = aux > 0 ? -aux : Math.abs(aux);
+    
+        values[0] = opposite
+        result.innerHTML = values[0]
+    }
 
 })

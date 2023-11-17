@@ -11,11 +11,11 @@ export const multiplication = (n1, n2) => {
 };
 
 export const division = (n1, n2) => {
-    return Math.round(n1 / n2)
+    return (n1 / n2)
 };
 
 export const percent = (n1, n2) => {
-    return Math.round((n2 * n1)/100)
+    return ((n2 * n1)/100)
 };
 
 export const backspace = (current) => {
