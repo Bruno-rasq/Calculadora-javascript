@@ -1,5 +1,7 @@
-import { Addition, multiplication, division, 
-    subtraction, percent, backspace } from "./operators.js";
+import {
+Addition, multiplication, division,
+subtraction, percent, backspace
+} from "./operators.js";
 
 //
 const result = document.querySelector('#result');
@@ -24,7 +26,7 @@ let values = [];
 // Capturando valores
 Numbers.forEach((NumberKey) => {
     NumberKey.addEventListener('click', () => {
-         let value = NumberKey.value;
+        let value = NumberKey.value;
 
         if (currentValue.length < 8) {
 
@@ -54,8 +56,8 @@ keys.forEach((OperatorKey) => {
 
         } else if (first) {
             second = true
-            
-        } else if(first && second){
+
+        } else if (first && second) {
             responseCalc(values, operator)
             values.push(Number(currentValue))
 
@@ -75,17 +77,17 @@ Equal_btn.addEventListener('click', () => {
     if (values.length === 0) {
         result.innerHTML = currentValue
 
-    } else if (values.length === 1 && currentValue === '0'){
+    } else if (values.length === 1 && currentValue === '0') {
         result.innerHTML = values[0]
 
-    } else if(values.length === 1 && currentValue != '0'){
+    } else if (values.length === 1 && currentValue != '0') {
         values.push(Number(currentValue))
 
         //Debug
         console.log(currentValue, values, operator, first, second)
 
         responseCalc(values, operator)
-        
+
     }
 })
 
@@ -95,12 +97,12 @@ const responseCalc = (arr, op) => {
 
     let n1 = arr.shift()
     let n2 = arr.shift()
-    
+
     let operatorCalc = op
 
     let response;
     switch (operatorCalc) {
-        
+
         case '+':
             response = Addition(n1, n2);
             break;
@@ -124,6 +126,7 @@ const responseCalc = (arr, op) => {
         default:
     }
 
+
     values.push(Number(response))
     result.innerHTML = response
 
@@ -131,10 +134,10 @@ const responseCalc = (arr, op) => {
     second = false
     operator = null
 
+
     //Debug
     console.log(currentValue, values, operator, first, second)
 }
-
 
 
 
@@ -157,7 +160,6 @@ backspace_btn.addEventListener('click', () => {
 
     let newValue = backspace(currentValue)
     result.innerHTML = newValue
-
     currentValue = newValue
 
     //Debug
@@ -167,17 +169,17 @@ backspace_btn.addEventListener('click', () => {
 
 opposite_btn.addEventListener('click', () => {
 
-    if(values.length === 0){
+    if (values.length === 0) {
         let aux = Number(currentValue)
         let opposite = aux > 0 ? -aux : Math.abs(aux);
-    
+
         currentValue = `${opposite}`
         result.innerHTML = currentValue
 
     } else {
         let aux = Number(values[0])
         let opposite = aux > 0 ? -aux : Math.abs(aux);
-    
+
         values[0] = opposite
         result.innerHTML = values[0]
     }

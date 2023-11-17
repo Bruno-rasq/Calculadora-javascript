@@ -12,23 +12,20 @@ HTML5, CSS3 e Javascript.
 
 ## Usuário deverá:
  - [x] O usuário pode ver um display mostrando o número atual inserido ou o resultado da última operação.
- - [x] O usuário pode ver um bloco de entrada contendo botões para os dígitos 0 a 9, operações - '+', '-', '/' e '=', um botão 'backspace' (para limpar) e um botão 'AC' (para limpar tudo).
- - [x] O usuário pode inserir números como sequências de até 8 dígitos clicando nos dígitos no teclado de entrada. A entrada de quaisquer dígitos maiores que 8 será ignorada.
- - [ ] O usuário pode clicar em um botão de operação para exibir o resultado dessa operação em:
-        - o resultado da operação anterior e o último número inserido OU
-        - os dois últimos números digitados OU
-        - o último número digitado
- - [ ] O usuário pode clicar no botão 'backspace' para limpar o último número ou a última operação. Se a última entrada do usuário foi uma operação, a exibição será atualizada para o valor que a precedeu.
+ - [x] O usuário pode ver um bloco de entrada contendo botões para os dígitos 0 a 9, operações - '+', '-', '/' e '=', um botão 'backspace' (para limpar o último digito) e um botão 'AC' (para limpar tudo).
+ - [ ] O usuário pode inserir números como sequências de até 8 dígitos clicando nos dígitos no teclado de entrada. A entrada de quaisquer dígitos maiores que 8 será ignorada.
+ - [x] O usuário pode clicar em um botão de operação para exibir o resultado dessa operação.
+ - [x] O usuário pode clicar no botão 'backspace' para limpar o último número inserido.
  - [x] O usuário pode clicar no botão 'AC' para limpar todas as áreas de trabalho internas e definir a exibição como 0.
  - [ ] O usuário pode ver 'ERR' exibido se alguma operação exceder o máximo de 8 dígitos.
 
- ## features Bônus:
+## features Bônus:
 
- - [ ] O usuário pode clicar no botão '+/-' para alterar o sinal do número exibido atualmente.
- - [ ] O usuário pode ver um botão de ponto decimal ('.') no teclado de entrada que permite inserir números de ponto flutuante de até 3 casas e realizar operações até o número máximo de casas decimais inseridas para qualquer número.
+ - [x] O usuário pode clicar no botão '+/-' para alterar o sinal do número exibido atualmente.
+ - [x] O usuário pode ver um botão de ponto decimal ('.') no teclado de entrada que permite inserir números de ponto flutuante.
 
 
- ## Stack
+## Stack
 
 <div align='center'>
     <img src='https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black'></img>

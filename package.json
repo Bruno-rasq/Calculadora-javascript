@@ -2,7 +2,7 @@
   "name": "Calculadora-javascript",
   "version": "1.0.0",
   "description": "## License  ![License](https://img.shields.io/github/license/Bruno-rasq/Calculadora-javascript.svg)",
-  "main": "index.js",
+  "main": "Calculator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,21 +1,31 @@
 export const Addition = (n1, n2) => {
-    return n1 + n2
+
+    let aux = (n1 + n2)
+    return aux
 };
 
 export const subtraction = (n1, n2) => {
-    return n1 - n2
+
+    let aux = (n1 - n2)
+    return aux
 };
 
 export const multiplication = (n1, n2) => {
-    return n1 * n2
+
+    let aux = (n1 * n2)
+    return aux
 };
 
 export const division = (n1, n2) => {
-    return (n1 / n2)
+
+    let aux = (n1 / n2)
+    return aux
 };
 
 export const percent = (n1, n2) => {
-    return ((n2 * n1)/100)
+
+    let aux = ((n2 * n1)/100)
+    return aux
 };
 
 export const backspace = (current) => {
