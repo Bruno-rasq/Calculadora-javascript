@@ -15,7 +15,6 @@ const keys = document.querySelectorAll('.keys_operators');
 
 // variaveis auxiliares
 let currentValue = "0";
-let value;
 let first = false;
 let second = false;
 let operator = null;
@@ -25,7 +24,7 @@ let values = [];
 // Capturando valores
 Numbers.forEach((NumberKey) => {
     NumberKey.addEventListener('click', () => {
-        value = NumberKey.value;
+         let value = NumberKey.value;
 
         if (currentValue.length < 8) {
 
@@ -39,7 +38,7 @@ Numbers.forEach((NumberKey) => {
         }
 
         //Debug
-        console.log(currentValue, first, second, values)
+        console.log(currentValue, values, operator, first, second)
     })
 });
 
@@ -50,22 +49,21 @@ keys.forEach((OperatorKey) => {
         operator = OperatorKey.value;
 
         if (!first) {
-            values.push(currentValue)
+            values.push(Number(currentValue))
             first = true
 
         } else if (first) {
             second = true
             
         } else if(first && second){
-            values.push(currentValue)
+            values.push(Number(currentValue))
             responseCalc(values, operator)
-            operator = null
 
         }
         currentValue = "0"
 
         //Debug
-        console.log(currentValue, first, second, values, operator)
+        console.log(currentValue, values, operator, first, second)
 
     })
 });
@@ -77,14 +75,17 @@ Equal_btn.addEventListener('click', () => {
     if (values.length === 0) {
         result.innerHTML = currentValue
 
-    } else if (values.length === 1){
-        values.push(currentValue)
+    } else if (values.length === 1 && currentValue === '0'){
+        result.innerHTML = values[0]
+
+    } else if(values.length === 1 && currentValue != '0'){
+        values.push(Number(currentValue))
 
         //Debug
-        console.log(currentValue, first, second, values)
+        console.log(currentValue, values, operator, first, second)
 
         responseCalc(values, operator)
-        operator = null
+        
     }
 });
 
@@ -92,8 +93,8 @@ Equal_btn.addEventListener('click', () => {
 //calculando...
 const responseCalc = (arr, op) => {
 
-    let n1 = Number(arr.shift())
-    let n2 = Number(arr.shift())
+    let n1 = arr.shift()
+    let n2 = arr.shift()
     
     let operatorCalc = op
 
@@ -123,11 +124,15 @@ const responseCalc = (arr, op) => {
         default:
     }
 
-    values.push(`${response}`)
+    values.push(Number(response))
     result.innerHTML = response
 
     currentValue = "0"
     second = false
+    operator = null
+
+    //Debug
+    console.log(currentValue, values, operator, first, second)
 };
 
 
