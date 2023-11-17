@@ -6,14 +6,14 @@
 
 [javascript]
 
-- [] Implementar operações matemáticas
+- [x] Implementar operações matemáticas
     - [x] multiplicação
     - [x] divisão
     - [x] adição
     - [x] subtração
-    - [ ] porcentagem
-    - [ ] troca de sinal
+    - [x] porcentagem
+    - [x] troca de sinal
 
 - [] concertar bug das multiplas operações
-- [] Implementar uso de numeros com casas decimais nas operações
+- [x] Implementar uso de numeros com casas decimais nas operações
     

@@ -1,6 +1,6 @@
 import {
 Addition, multiplication, division,
-subtraction, percent, backspace
+subtraction, percent, backspace,
 } from "./operators.js";
 
 //
@@ -66,7 +66,6 @@ keys.forEach((OperatorKey) => {
 
         //Debug
         console.log(currentValue, values, operator, first, second)
-
     })
 })
 
@@ -87,7 +86,6 @@ Equal_btn.addEventListener('click', () => {
         console.log(currentValue, values, operator, first, second)
 
         responseCalc(values, operator)
-
     }
 })
 
@@ -126,9 +124,8 @@ const responseCalc = (arr, op) => {
         default:
     }
 
-
     values.push(Number(response))
-    result.innerHTML = response
+    result.innerHTML = `${response}`
 
     currentValue = "0"
     second = false

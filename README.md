@@ -11,9 +11,10 @@ HTML5, CSS3 e Javascript.
 
 
 ## Usuário deverá:
+
  - [x] O usuário pode ver um display mostrando o número atual inserido ou o resultado da última operação.
  - [x] O usuário pode ver um bloco de entrada contendo botões para os dígitos 0 a 9, operações - '+', '-', '/' e '=', um botão 'backspace' (para limpar o último digito) e um botão 'AC' (para limpar tudo).
- - [ ] O usuário pode inserir números como sequências de até 8 dígitos clicando nos dígitos no teclado de entrada. A entrada de quaisquer dígitos maiores que 8 será ignorada.
+ - [x] O usuário pode inserir números como sequências de até 8 dígitos clicando nos dígitos no teclado de entrada. A entrada de quaisquer dígitos maiores que 8 será ignorada.
  - [x] O usuário pode clicar em um botão de operação para exibir o resultado dessa operação.
  - [x] O usuário pode clicar no botão 'backspace' para limpar o último número inserido.
  - [x] O usuário pode clicar no botão 'AC' para limpar todas as áreas de trabalho internas e definir a exibição como 0.
