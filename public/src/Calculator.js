@@ -51,15 +51,15 @@ keys.forEach((OperatorKey) => {
         operator = OperatorKey.value;
 
         if (!first) {
-            values.push(Number(currentValue))
             first = true
+            values.push(Number(currentValue))
 
         } else if (first) {
             second = true
 
         } else if (first && second) {
-            responseCalc(values, operator)
             values.push(Number(currentValue))
+            responseCalc(values, operator)
 
         }
         currentValue = "0"
@@ -95,34 +95,17 @@ const responseCalc = (arr, op) => {
 
     let n1 = arr.shift()
     let n2 = arr.shift()
-
     let operatorCalc = op
 
-    let response;
-    switch (operatorCalc) {
-
-        case '+':
-            response = Addition(n1, n2);
-            break;
-
-        case '-':
-            response = subtraction(n1, n2);
-            break;
-
-        case '/':
-            response = division(n1, n2);
-            break;
-
-        case 'x':
-            response = multiplication(n1, n2);
-            break;
-
-        case '%':
-            response = percent(n1, n2);
-            break;
-
-        default:
+    const Operations = {
+        '+': Addition(n1, n2),
+        '-': subtraction(n1, n2),
+        'x': multiplication(n1, n2),
+        '/': division(n1, n2),
+        '%': percent(n1, n2)
     }
+    
+    let response = Operations[operatorCalc]
 
     values.push(Number(response))
     result.innerHTML = `${response}`
