@@ -2,6 +2,7 @@
 
 :root{
 
+    --bg-color: rgb(255, 69, 69);
     --color1: #000000;
     --color2: #F4DFCB;
     --color3: #F4EAE0;
@@ -26,5 +27,5 @@ body{
 
     font-family: 'Roboto', sans-serif;
 
-    background-color: rgb(255, 69, 69);
+    background-color: var(--bg-color);
 }

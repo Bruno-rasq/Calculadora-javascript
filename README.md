@@ -6,8 +6,7 @@
 
 As calculadoras não são apenas uma das ferramentas mais úteis disponíveis, mas também uma ótima maneira de entender a interface do usuário e o processamento de eventos em um aplicativo.
 
-O objetivo do projeto é criar uma calculadora simples (ou seja que suport calculos aritméticos simples) utilizando apenas
-HTML5, CSS3 e Javascript.
+O objetivo do projeto é criar uma calculadora simples utilizando apenas HTML5, CSS3 e Javascript sem usar usar a função eval(). Se você encontrar algum bug por favor me avise.
 
 
 ## Usuário deverá:
