@@ -18,7 +18,7 @@ HTML5, CSS3 e Javascript.
  - [x] O usuário pode clicar em um botão de operação para exibir o resultado dessa operação.
  - [x] O usuário pode clicar no botão 'backspace' para limpar o último número inserido.
  - [x] O usuário pode clicar no botão 'AC' para limpar todas as áreas de trabalho internas e definir a exibição como 0.
- - [ ] O usuário pode ver 'ERR' exibido se alguma operação exceder o máximo de 8 dígitos.
+ - [x] O usuário pode ver 'ERR' exibido se alguma operação exceder o máximo de 8 dígitos.
 
 ## features Bônus:
 

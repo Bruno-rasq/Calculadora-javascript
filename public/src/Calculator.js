@@ -1,7 +1,9 @@
+//Importando operações matematicas 
 import {
-Addition, multiplication, division,
-subtraction, percent, backspace,
+    Addition, multiplication, division,
+    subtraction, percent,
 } from "./operators.js";
+
 
 //
 const result = document.querySelector('#result');
@@ -17,84 +19,16 @@ const keys = document.querySelectorAll('.keys_operators');
 
 // variaveis auxiliares
 let currentValue = "0";
-let first = false;
-let second = false;
-let operator = null;
+let first, second = false;
+let operatorsKey = [];
 let values = [];
 
 
-// Capturando valores
-Numbers.forEach((NumberKey) => {
-    NumberKey.addEventListener('click', () => {
-        let value = NumberKey.value;
-
-        if (currentValue.length < 8) {
-
-            if (currentValue === "0") {
-                currentValue = ''
-            }
-
-            currentValue += value
-            result.innerHTML = currentValue
-
-        }
-
-        //Debug
-        console.log(currentValue, values, operator, first, second)
-    })
-})
-
-
-//Capturando operadores inseridos
-keys.forEach((OperatorKey) => {
-    OperatorKey.addEventListener('click', () => {
-        operator = OperatorKey.value;
-
-        if (!first) {
-            first = true
-            values.push(Number(currentValue))
-
-        } else if (first) {
-            second = true
-
-        } else if (first && second) {
-            values.push(Number(currentValue))
-            responseCalc(values, operator)
-
-        }
-        currentValue = "0"
-
-        //Debug
-        console.log(currentValue, values, operator, first, second)
-    })
-})
-
-
-//botão de inicilização do calculo
-Equal_btn.addEventListener('click', () => {
-
-    if (values.length === 0) {
-        result.innerHTML = currentValue
-
-    } else if (values.length === 1 && currentValue === '0') {
-        result.innerHTML = values[0]
-
-    } else if (values.length === 1 && currentValue != '0') {
-        values.push(Number(currentValue))
-
-        //Debug
-        console.log(currentValue, values, operator, first, second)
-
-        responseCalc(values, operator)
-    }
-})
-
-
 //calculando...
-const responseCalc = (arr, op) => {
+const Calc = (num1, num2, op) => {
 
-    let n1 = arr.shift()
-    let n2 = arr.shift()
+    let n1 = num1
+    let n2 = num2
     let operatorCalc = op
 
     const Operations = {
@@ -104,49 +38,144 @@ const responseCalc = (arr, op) => {
         '/': division(n1, n2),
         '%': percent(n1, n2)
     }
-    
+
     let response = Operations[operatorCalc]
 
-    values.push(Number(response))
-    result.innerHTML = `${response}`
-
-    currentValue = "0"
-    second = false
-    operator = null
-
-
-    //Debug
-    console.log(currentValue, values, operator, first, second)
+    //100,000,000
+    if(response > 100000000) return `Erro.`
+    else return response
 }
 
-
-
-//limpando operações e valores
-clear_btn.addEventListener('click', () => {
-
+//Limpar...
+const Clear = () => {
     currentValue = "0"
     result.innerHTML = currentValue
 
     values.length = 0
-    operator = null
+    operatorsKey.shift()
+
     first = false
     second = false
+}
 
-    //Debug
-    console.log(currentValue, first, second, values)
+//limpar ultimo digito...
+const backspace = (current) => {
+
+    if (current !== "0") {
+
+        let split = current.split('')
+        split.pop();
+
+        let response = split.length === 0 ? "0" : split.join('');
+
+        return response;
+
+    } else {
+
+        return "0"
+    }
+}
+
+//Debug...
+const Debug = () => {
+    console.log(currentValue, values, operatorsKey, first, second)
+}
+
+//Adicionar valor ao valor corrente...
+const AddCurrentInValues = () => {
+    values.push(Number(currentValue))
+}
+
+// exibição de erro...
+const Erro = () => {
+    result.innerHTML = 'Erro.'
+};
+
+
+// Capturando valores numericos
+Numbers.forEach((NumberKey) => {
+    NumberKey.addEventListener('click', () => {
+        let value = NumberKey.value;
+
+        if (currentValue.length < 8) {
+
+            if (currentValue === "0") currentValue = ''
+
+            currentValue += value
+            result.innerHTML = currentValue
+        }
+
+        Debug()
+    })
 })
 
+
+// limpa o ultimo digito inserido
 backspace_btn.addEventListener('click', () => {
 
     let newValue = backspace(currentValue)
     result.innerHTML = newValue
     currentValue = newValue
 
-    //Debug
-    console.log(currentValue, first, second, values)
+    Debug()
 })
 
 
+//Capturando operadores inseridos
+keys.forEach((OperatorKey) => {
+    OperatorKey.addEventListener('click', () => {
+        operatorsKey.push(OperatorKey.value);
+
+        if (!first) {
+            first = true
+            AddCurrentInValues()
+
+        } else if (first && !second && currentValue != '0') {
+            second = true
+            AddCurrentInValues()
+
+        }
+
+        if (operatorsKey.length >= 2) {
+
+            let n1 = values.shift()
+            let n2 = values.shift()
+            let op = operatorsKey.shift()
+            let response = Calc(n1, n2, op)
+
+            if(response != 'Erro.') {
+
+                result.innerHTML = response
+                values.push(response)
+                first = true
+                second = false
+                
+            } else {
+    
+                Clear()
+                Erro()
+            }
+
+        }
+
+        currentValue = '0'
+
+        Debug()
+    })
+})
+
+
+// Limpando tudo
+clear_btn.addEventListener('click', () => {
+
+    Clear()
+    operatorsKey.length = 0
+
+    Debug()
+})
+
+
+//Mudando valor de possitivo para negativo (vice-versa)
 opposite_btn.addEventListener('click', () => {
 
     if (values.length === 0) {
@@ -164,4 +193,42 @@ opposite_btn.addEventListener('click', () => {
         result.innerHTML = values[0]
     }
 
+    Debug()
+})
+
+
+//botão de inicilização do calculo
+Equal_btn.addEventListener('click', () => {
+
+    if (values.length === 0) result.innerHTML = currentValue
+
+    if (values.length === 1 && currentValue === '0') result.innerHTML = values[0]
+
+    if (values.length === 1 && currentValue != '0') {
+
+        AddCurrentInValues()
+
+        let n1 = values.shift()
+        let n2 = values.shift()
+        let op = operatorsKey.shift()
+        let response = Calc(n1, n2, op)
+
+        if(response != 'Erro.') {
+
+            Clear()
+
+            result.innerHTML = response
+            values.push(response)
+            first = true
+
+        } else {
+
+            Clear()
+            Erro()
+        }
+
+
+    }
+
+    Debug()
 })
