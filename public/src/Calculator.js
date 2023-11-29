@@ -105,7 +105,7 @@ Numbers.forEach((NumberKey) => {
             result.innerHTML = currentValue
         }
 
-        Debug()
+        // Debug()
     })
 })
 
@@ -117,7 +117,7 @@ backspace_btn.addEventListener('click', () => {
     result.innerHTML = newValue
     currentValue = newValue
 
-    Debug()
+    // Debug()
 })
 
 
@@ -160,7 +160,7 @@ keys.forEach((OperatorKey) => {
 
         currentValue = '0'
 
-        Debug()
+        // Debug()
     })
 })
 
@@ -171,7 +171,7 @@ clear_btn.addEventListener('click', () => {
     Clear()
     operatorsKey.length = 0
 
-    Debug()
+    // Debug()
 })
 
 
@@ -193,7 +193,7 @@ opposite_btn.addEventListener('click', () => {
         result.innerHTML = values[0]
     }
 
-    Debug()
+    // Debug()
 })
 
 
@@ -230,5 +230,5 @@ Equal_btn.addEventListener('click', () => {
 
     }
 
-    Debug()
+    // Debug()
 })
