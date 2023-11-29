@@ -3,7 +3,7 @@
 ## License 
 ![License](https://img.shields.io/github/license/Bruno-rasq/Calculadora-javascript.svg)
 
-<p>Acesso: <a href='https://calculadorasimplesjavascript.netlify.app/' target='_blank'>Calculadora-javascript</a></p>
+<p>Acesso: <a href='https://simplecalculatorwithjavascript.netlify.app/' target='_blank'>Calculadora-javascript</a></p>
  
 
 As calculadoras não são apenas uma das ferramentas mais úteis disponíveis, mas também uma ótima maneira de entender a interface do usuário e o processamento de eventos em um aplicativo.
