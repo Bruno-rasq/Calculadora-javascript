@@ -26,6 +26,21 @@ let values = [];
 let history = '';
 
 
+//Debug...
+const Debug = () => {
+
+    const debug = [
+        `${currentValue}`,
+        `${values}`,
+        `${operatorsKey}`,
+        `${first}`,
+        `${second}`,
+        `${history}`
+    ]
+
+    console.log(debug.join('\n'))
+}
+
 //calculando...
 const Calc = (num1, num2, op) => {
 
@@ -80,21 +95,6 @@ const backspace = (current) => {
     }
 }
 
-//Debug...
-const Debug = () => {
-
-    const debug = [
-        `${currentValue}`,
-        `${values}`,
-        `${operatorsKey}`,
-        `${first}`,
-        `${second}`,
-        `${history}`
-    ]
-
-    console.log(debug.join('\n'))
-}
-
 //Adicionar valor ao valor corrente...
 const AddCurrentInValues = () => {
     values.push(Number(currentValue))
@@ -104,8 +104,7 @@ const AddCurrentInValues = () => {
 const Erro = () => {
     result.innerHTML = 'Erro.'
     history = ''
-};
-
+}
 
 const num = (value) => {
     if (currentValue.length < 8) {
@@ -123,35 +122,12 @@ const backspaceFunc = () => {
     currentValue = newValue
 }
 
-// Capturando valores numericos
-Numbers.forEach((NumberKey) => {
-    NumberKey.addEventListener('click', () => {
-        let value = NumberKey.value;
+const key = (key) => {
 
-       num(value)
+    operatorsKey.push(key);
 
-        // Debug()
-    })
-})
-
-
-// limpa o ultimo digito inserido
-backspace_btn.addEventListener('click', () => {
-
-    backspaceFunc()
-
-    // Debug()
-})
-
-
-//Capturando operadores inseridos
-keys.forEach((OperatorKey) => {
-    OperatorKey.addEventListener('click', () => {
-        operatorsKey.push(OperatorKey.value);
-
-
-        if(history === '') history = `${currentValue} ${OperatorKey.value}`
-        else history += ` ${OperatorKey.value}`
+    if(history === '') history = `${currentValue} ${key}`
+        else history += ` ${key}`
         historyCalc.innerHTML = history
 
 
@@ -188,6 +164,73 @@ keys.forEach((OperatorKey) => {
         }
 
         currentValue = '0'
+}
+
+const equal = () => {
+
+    if (values.length === 0) result.innerHTML = currentValue
+
+    if (values.length === 1 && currentValue === '0') result.innerHTML = values[0]
+
+    if (values.length === 1 && currentValue != '0') {
+
+        AddCurrentInValues()
+
+        let n1 = values.shift()
+        let n2 = values.shift()
+        let op = operatorsKey.shift()
+        let response = Calc(n1, n2, op)
+
+        if(response != 'Erro.') {
+
+            Clear()
+
+            result.innerHTML = response
+            values.push(response)
+            first = true
+
+            history += `${n1} ${op} ${n2} =`
+            historyCalc.innerHTML = history
+            history = `${response}`
+
+        } else {
+
+            Clear()
+            Erro()
+        }
+
+
+    }
+}
+
+
+
+// Capturando valores numericos
+Numbers.forEach((NumberKey) => {
+    NumberKey.addEventListener('click', () => {
+        let value = NumberKey.value;
+
+       num(value)
+
+        // Debug()
+    })
+})
+
+
+// limpa o ultimo digito inserido
+backspace_btn.addEventListener('click', () => {
+
+    backspaceFunc()
+
+    // Debug()
+})
+
+
+//Capturando operadores inseridos
+keys.forEach((OperatorKey) => {
+    OperatorKey.addEventListener('click', () => {
+
+        key(OperatorKey.value)
 
         // Debug()
     })
@@ -229,42 +272,11 @@ opposite_btn.addEventListener('click', () => {
 //botão de inicilização do calculo
 Equal_btn.addEventListener('click', () => {
 
-    if (values.length === 0) result.innerHTML = currentValue
-
-    if (values.length === 1 && currentValue === '0') result.innerHTML = values[0]
-
-    if (values.length === 1 && currentValue != '0') {
-
-        AddCurrentInValues()
-
-        let n1 = values.shift()
-        let n2 = values.shift()
-        let op = operatorsKey.shift()
-        let response = Calc(n1, n2, op)
-
-        if(response != 'Erro.') {
-
-            Clear()
-
-            result.innerHTML = response
-            values.push(response)
-            first = true
-
-            history += `${n1} ${op} ${n2} =`
-            historyCalc.innerHTML = history
-            history = `${response}`
-
-        } else {
-
-            Clear()
-            Erro()
-        }
-
-
-    }
+    equal()
 
     // Debug()
 })
+
 
 const KeyMapper = {
 
@@ -278,14 +290,13 @@ const KeyMapper = {
     '7': () => num('7'),
     '8': () => num('8'),
     '9': () => num('9'),
-    'Backspace': backspaceFunc(),
-    // '=': console.log('equal'),
-    // '+': console.log('+'),
-    // '-': console.log('-'),
-    // '/': console.log('/'),
-    // '*': console.log('x'),
-    // '%': console.log('%'),
-    // '.': console.log('.'),
+    'Backspace': () => backspaceFunc(),
+    '+': () => key('+'),
+    '-': () => key('-'),
+    '/': () => key('/'),
+    '*': () => key('x'),
+    'Enter': () => equal(),
+    '=': () => equal()
 }
 
 
