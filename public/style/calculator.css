@@ -24,6 +24,7 @@
     display: flex;
     align-items: end;
     justify-content: right;
+    position: relative;
 }
 
 .calculator .result > span {
@@ -36,6 +37,16 @@
     white-space: nowrap;
 
     user-select: none;
+}
+
+.calculator .result > span:nth-child(1) {
+
+    color: rgb(192, 192, 192);
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 25px 20px 0 0;
 }
 
 .calculator .buttons {

@@ -7,6 +7,7 @@ import {
 
 //
 const result = document.querySelector('#result');
+const historyCalc = document.querySelector('.history');
 const Equal_btn = document.querySelector('#equal-btn');
 
 const backspace_btn = document.querySelector('.backspace');
@@ -22,6 +23,7 @@ let currentValue = "0";
 let first, second = false;
 let operatorsKey = [];
 let values = [];
+let history = '';
 
 
 //calculando...
@@ -50,6 +52,8 @@ const Calc = (num1, num2, op) => {
 const Clear = () => {
     currentValue = "0"
     result.innerHTML = currentValue
+    history = ''
+    historyCalc.innerHTML = history
 
     values.length = 0
     operatorsKey.shift()
@@ -78,7 +82,17 @@ const backspace = (current) => {
 
 //Debug...
 const Debug = () => {
-    console.log(currentValue, values, operatorsKey, first, second)
+
+    const debug = [
+        `${currentValue}`,
+        `${values}`,
+        `${operatorsKey}`,
+        `${first}`,
+        `${second}`,
+        `${history}`
+    ]
+
+    console.log(debug.join('\n'))
 }
 
 //Adicionar valor ao valor corrente...
@@ -89,21 +103,32 @@ const AddCurrentInValues = () => {
 // exibição de erro...
 const Erro = () => {
     result.innerHTML = 'Erro.'
+    history = ''
 };
 
+
+const num = (value) => {
+    if (currentValue.length < 8) {
+
+        if (currentValue === "0") currentValue = ''
+
+        currentValue += value
+        result.innerHTML = currentValue
+    }
+}
+
+const backspaceFunc = () => {
+    let newValue = backspace(currentValue)
+    result.innerHTML = newValue
+    currentValue = newValue
+}
 
 // Capturando valores numericos
 Numbers.forEach((NumberKey) => {
     NumberKey.addEventListener('click', () => {
         let value = NumberKey.value;
 
-        if (currentValue.length < 8) {
-
-            if (currentValue === "0") currentValue = ''
-
-            currentValue += value
-            result.innerHTML = currentValue
-        }
+       num(value)
 
         // Debug()
     })
@@ -113,9 +138,7 @@ Numbers.forEach((NumberKey) => {
 // limpa o ultimo digito inserido
 backspace_btn.addEventListener('click', () => {
 
-    let newValue = backspace(currentValue)
-    result.innerHTML = newValue
-    currentValue = newValue
+    backspaceFunc()
 
     // Debug()
 })
@@ -125,6 +148,12 @@ backspace_btn.addEventListener('click', () => {
 keys.forEach((OperatorKey) => {
     OperatorKey.addEventListener('click', () => {
         operatorsKey.push(OperatorKey.value);
+
+
+        if(history === '') history = `${currentValue} ${OperatorKey.value}`
+        else history += ` ${OperatorKey.value}`
+        historyCalc.innerHTML = history
+
 
         if (!first) {
             first = true
@@ -221,6 +250,10 @@ Equal_btn.addEventListener('click', () => {
             values.push(response)
             first = true
 
+            history += `${n1} ${op} ${n2} =`
+            historyCalc.innerHTML = history
+            history = `${response}`
+
         } else {
 
             Clear()
@@ -232,3 +265,34 @@ Equal_btn.addEventListener('click', () => {
 
     // Debug()
 })
+
+const KeyMapper = {
+
+    '0': () => num('0'),
+    '1': () => num('1'),
+    '2': () => num('2'),
+    '3': () => num('3'),
+    '4': () => num('4'),
+    '5': () => num('5'),
+    '6': () => num('6'),
+    '7': () => num('7'),
+    '8': () => num('8'),
+    '9': () => num('9'),
+    'Backspace': backspaceFunc(),
+    // '=': console.log('equal'),
+    // '+': console.log('+'),
+    // '-': console.log('-'),
+    // '/': console.log('/'),
+    // '*': console.log('x'),
+    // '%': console.log('%'),
+    // '.': console.log('.'),
+}
+
+
+document.onkeydown = (event) => {
+
+    event.preventDefault()
+
+    let key = event.key
+    KeyMapper[key]()
+}
